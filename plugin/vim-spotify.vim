@@ -17,8 +17,10 @@ command!          SpotifyPlay   call s:VimSpotifyPlayTrack()
 " Show buffer
 " ---------------------------------------------------------------------------------
 function! s:VimSpotifyCreateBuffer()
-  let existing_spotify_buffer = bufnr('Spotify')
-  
+  new "Spotify"
+  buffer "Spotify"
+  " let existing_spotify_buffer = bufnr('Spotify')
+
   setlocal filetype=vim-spotify
   setlocal buftype=nofile
   setlocal nobuflisted
@@ -26,8 +28,8 @@ function! s:VimSpotifyCreateBuffer()
   setlocal nonumber
   setlocal nowrap
 
-  map <buffer> S <esc>:SpotifySearch 
-  map <buffer> s <esc>:SpotifySearch 
+  map <buffer> S <esc>:SpotifySearch
+  map <buffer> s <esc>:SpotifySearch
   map <buffer> P <esc>:SpotifyPlay<cr>
   map <buffer> p <esc>:SpotifyPlay<cr>
 endfunction
@@ -67,7 +69,7 @@ module VimSpotify
   class << self
     def get_search_uri(string)
       json = JSON.parse HTTParty.get("http://ws.spotify.com/search/1/track.json", query: {"q" => string}).body
-      
+
       json['tracks'].each.with_index do |track,i|
         length = Time.at(track['length']).gmtime.strftime('%M:%S')
         artist = track['artists'][0]['name'].byteslice(0..17).rjust(18).force_encoding('ASCII-8BIT')
