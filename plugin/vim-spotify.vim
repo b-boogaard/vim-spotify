@@ -207,11 +207,6 @@ module VimSpotify
       @client_secret = json['client_secret']
     end
 
-      @user = json['user']
-      @client_id = json['client_id']
-      @client_secret = json['client_secret']
-    end
-
     def clear_results
       @results = []
     end
