@@ -7,8 +7,7 @@ This is a fork of [vim-spotify](https://github.com/dphase/dphase-vim/tree/master
 
 __NOTE__:
 
-This plugin is only compatible with systems running Mac OS X and it also requires the spotify client to be running. The plugin is
-only meant to drive the Spotify Client externally from Vim.
+This plugin is only compatible with systems running Mac OS X and it also requires the spotify client to be running. The plugin is only meant to drive the Spotify Client externally from Vim.
 
 
 __Install witth Vundle__
@@ -18,3 +17,5 @@ Add the following lines to your .vimrc
 ```vimL
     Plugin "b-boogaard/vim-spotify"
 ```
+
+Awesome documentation coming soon(ish).
