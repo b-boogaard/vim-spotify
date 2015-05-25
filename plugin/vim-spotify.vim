@@ -34,8 +34,6 @@ function! s:VimSpotifyCreateBuffer()
   setlocal nonumber
   setlocal nowrap
 
-  ruby VimSpotify::authenticate()
-
   map <buffer> S <esc>:SpotifySearchTracks<space>
   map <buffer> s <esc>:SpotifySearchTracks<space>
   map <buffer> P <esc>:SpotifyPlayTrack<cr>
