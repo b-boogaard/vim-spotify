@@ -112,8 +112,8 @@ require 'rspotify'
 module VimSpotify
   class << self
     def authenticate
-      parse_key
-      RSpotify.authenticate(@client_id, @client_secret)
+      # parse_key
+      # RSpotify.authenticate(@client_id, @client_secret)
     end
 
     def get_tracks_by_name(track_name)
