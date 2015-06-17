@@ -93,8 +93,8 @@ endfunction
 
 " Next Track
 " ---------------------------------------------------------------------------------
-function! s:VimSpotifyPlayPause()
-  ruby VimSpotify::play_pause()
+function! s:VimSpotifyNextTrack()
+  ruby VimSpotify::next_track()
 endfunction
 
 " Previous Track
