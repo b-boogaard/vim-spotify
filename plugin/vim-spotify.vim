@@ -37,11 +37,12 @@ function! s:VimSpotifyCreateBuffer()
   setlocal nonumber
   setlocal nowrap
 
-  map <buffer> S <esc>:SpotifySearchTracks<space>
   map <buffer> s <esc>:SpotifySearchTracks<space>
-  map <buffer> P <esc>:SpotifyPlayTrack<cr>
   map <buffer> p <esc>:SpotifyPlayTrack<cr>
   map <buffer> l <esc>:SpotifySearchSelected<cr>
+  map <buffer> n <esc>:SpotifyNextTrack<cr>
+  map <buffer> P <esc>:SpotifyPreviousTrack<cr>
+  map <buffer> a <esc>:SpotifyPlayPause<cr>
 endfunction
 
 " ---------------------------------------------------------------------------------
