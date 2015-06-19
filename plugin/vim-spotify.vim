@@ -9,7 +9,8 @@ endif
 let g:vim_spotify_loaded       = 1
 let g:vim_spotify_current_song = ''
 
-ruby load 'vim_spotify.rb'
+let s:vim_spotify_root = expand("<sfile>:p:h")
+ruby load "#{VIM::evaluate('s:vim_spotify_root')}/vim_spotify.rb"
 
 " Commands
 " ---------------------------------------------------------------------------------
