@@ -2,11 +2,6 @@ require 'rspotify'
 
 module VimSpotify
   class << self
-    def authenticate
-      # parse_key
-      # RSpotify.authenticate(@client_id, @client_secret)
-    end
-
     def get_tracks_by_name(track_name)
       tracks = RSpotify::Track.search(track_name)
 
@@ -37,7 +32,7 @@ module VimSpotify
       display(collect_albums(artist.albums))
     end
 
-    def dispaly_selected(selected)
+    def display_selected(selected)
       collect_selected(selected)
     end
 
@@ -85,17 +80,6 @@ module VimSpotify
       @results = []
     end
 
-    def collect_selected(selected)
-      clear_results
-
-      href = get_href(selected)
-      type = get_type(href)
-
-      @user = json['user']
-      @client_id = json['client_id']
-      @client_secret = json['client_secret']
-    end
-
     def clear_results
       @results = []
     end
@@ -140,35 +124,7 @@ module VimSpotify
     def collect_artists(artists)
       clear_results
 
-      artists.each do |artist, index|
-        artist_name = artist.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
-        uri = artist.uri
-
-        @results[index] = create_row(artist_name, uri)
-      end
-
-      @results
-    end
-
-    def collect_tracks(tracks)
-      clear_results
-
-      tracks.each.with_index do |track, index|
-        artist = track.artists[0].name.byteslice(0..17).rjust(18).force_encoding('ASCII-8BIT')
-        song = track.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
-        album_name = track.album.name.byteslice(0..39).ljust(40).force_encoding('ASCII-8BIT')
-        uri = track.uri
-
-        @results[index] = create_track_row(song, artist, album_name, uri)
-      end
-
-      @results
-    end
-
-    def collect_artists(artists)
-      clear_results
-
-      artists.each do |artist, index|
+      artists.each.with_index do |artist, index|
         artist_name = artist.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
         uri = artist.uri
 
@@ -181,7 +137,7 @@ module VimSpotify
     def collect_albums(albums)
       clear_results
 
-      albums.each do |album, index|
+      albums.each.with_index do |album, index|
         album_name = album.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
         uri = album.uri
 
@@ -193,48 +149,6 @@ module VimSpotify
 
     def create_track_row(song, artist, album_name, uri)
       "| ♫ | #{song} | #{artist} | #{album_name} | #{uri} |"
-    end
-
-    def collect_albums(albums)
-      clear_results
-
-      albums.each do |album, index|
-        album_name = album.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
-        uri = album.uri
-
-        @results[index] = create_row(album_name, uri)
-      end
-
-      @results
-    end
-
-    def create_track_row(song, artist, album_name, uri)
-      "| ♫ | #{song} | #{artist} | #{album_name} | #{uri} |"
-    end
-
-    def create_row(name, uri)
-      "| ♫ | #{name} | #{} | #{} | #{uri} |"
-    end
-
-    def get_uri(href)
-      href.split(':')[2]
-    end
-
-    def get_type(href)
-      href.split(':')[1]
-    end
-
-    def collect_albums(albums)
-      clear_results
-
-      albums.each do |album, index|
-        album_name = album.name.byteslice(0..35).ljust(36).force_encoding('ASCII-8BIT')
-        uri = album.uri
-
-        @results[index] = create_row(album_name, uri)
-      end
-
-      @results
     end
 
     def create_track_row(song, artist, album_name, uri)
